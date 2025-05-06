@@ -62,7 +62,7 @@ public class DataInitializer implements CommandLineRunner {
         List<Automovel> automoveis = automovelRepository.saveAll(List.of(
                 auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9, auto10
         ));
-        System.out.println("Automu00f3veis criados: " + automoveis.size());
+        System.out.println("Automóveis criados: " + automoveis.size());
 
         // Cria locacoes
         Locacao locacao1 = new Locacao();
