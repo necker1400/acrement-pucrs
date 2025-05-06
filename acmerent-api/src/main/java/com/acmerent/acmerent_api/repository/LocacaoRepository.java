@@ -13,34 +13,34 @@ import java.util.List;
 public interface LocacaoRepository extends JpaRepository<Locacao, Long> {
     
     /**
-     * Encontra locau00e7u00f5es pelo status
+     * Encontra locacoes pelo status
      * 
-     * @param status Status da locau00e7u00e3o
-     * @return Lista de locau00e7u00f5es com o status especificado
+     * @param status Status da locacao
+     * @return Lista de locacoes com o status especificado
      */
     List<Locacao> findByStatus(StatusLocacao status);
     
     /**
-     * Encontra uma locau00e7u00e3o pelo nu00famero
+     * Encontra uma locacao pelo numero
      * 
-     * @param numero Nu00famero da locau00e7u00e3o
-     * @return Locau00e7u00e3o encontrada ou null se nu00e3o encontrada
+     * @param numero Numero da locacao
+     * @return Locacao encontrada ou null se nao encontrada
      */
     Locacao findByNumero(Long numero);
     
     /**
-     * Encontra locau00e7u00f5es por automu00f3vel
+     * Encontra locacoes por automovel
      * 
-     * @param automovel Automu00f3vel
-     * @return Lista de locau00e7u00f5es do automu00f3vel especificado
+     * @param automovel Automovel
+     * @return Lista de locacoes do automovel especificado
      */
     List<Locacao> findByAutomovel(Automovel automovel);
     
     /**
-     * Encontra locau00e7u00f5es por cliente
+     * Encontra locacoes por cliente
      * 
      * @param cliente Cliente
-     * @return Lista de locau00e7u00f5es do cliente especificado
+     * @return Lista de locacoes do cliente especificado
      */
     List<Locacao> findByCliente(Cliente cliente);
 }

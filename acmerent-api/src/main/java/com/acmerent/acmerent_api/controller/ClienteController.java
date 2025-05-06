@@ -34,9 +34,9 @@ public class ClienteController {
     }
 
     /**
-     * Consulta um cliente pelo cu00f3digo
+     * Consulta um cliente pelo codigo
      * 
-     * @param codigo Cu00f3digo do cliente
+     * @param codigo Codigo do cliente
      * @return Cliente encontrado
      */
     @GetMapping("/consultacliente")

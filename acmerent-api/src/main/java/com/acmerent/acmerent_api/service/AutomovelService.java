@@ -19,31 +19,31 @@ public class AutomovelService {
     }
 
     /**
-     * Lista todos os automu00f3veis cadastrados
+     * Lista todos os automoveis cadastrados
      * 
-     * @return Lista de automu00f3veis
+     * @return Lista de automoveis
      */
     public List<Automovel> listarTodos() {
         return automovelRepository.findAll();
     }
 
     /**
-     * Busca um automu00f3vel pelo ID
+     * Busca um automovel pelo ID
      * 
-     * @param id ID do automu00f3vel
-     * @return Automu00f3vel encontrado
-     * @throws RuntimeException se o automu00f3vel nu00e3o for encontrado
+     * @param id ID do automovel
+     * @return Automovel encontrado
+     * @throws RuntimeException se o automovel nao for encontrado
      */
     public Automovel buscarPorId(Long id) {
         return automovelRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Automu00f3vel nu00e3o encontrado com o ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Automovel não encontrado com o ID: " + id));
     }
 
     /**
-     * Verifica se um automu00f3vel estu00e1 disponu00edvel para locau00e7u00e3o
+     * Verifica se um automovel esta disponivel para locacao
      * 
-     * @param id ID do automu00f3vel
-     * @return true se o automu00f3vel estu00e1 disponu00edvel, false caso contru00e1rio
+     * @param id ID do automovel
+     * @return true se o automovel esta disponivel, false caso contrario
      */
     public boolean validarDisponibilidade(Long id) {
         Automovel automovel = buscarPorId(id);
@@ -51,11 +51,11 @@ public class AutomovelService {
     }
 
     /**
-     * Atualiza o status de um automu00f3vel
+     * Atualiza o status de um automovel
      * 
-     * @param id ID do automu00f3vel
-     * @param status Novo status do automu00f3vel
-     * @return Automu00f3vel atualizado
+     * @param id ID do automovel
+     * @param status Novo status do automovel
+     * @return Automovel atualizado
      */
     public Automovel atualizarStatus(Long id, StatusAutomovel status) {
         Automovel automovel = buscarPorId(id);

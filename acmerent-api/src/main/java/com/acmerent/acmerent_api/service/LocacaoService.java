@@ -27,20 +27,20 @@ public class LocacaoService {
     }
 
     /**
-     * Lista todas as locau00e7u00f5es cadastradas
+     * Lista todas as locacoes cadastradas
      * 
-     * @return Lista de locau00e7u00f5es
+     * @return Lista de locacoes
      */
     public List<Locacao> listarTodas() {
         return locacaoRepository.findAll();
     }
 
     /**
-     * Cadastra uma nova locau00e7u00e3o
+     * Cadastra uma nova locacao
      * 
-     * @param locacao Dados da locau00e7u00e3o
-     * @return Locau00e7u00e3o cadastrada
-     * @throws RuntimeException se o cliente ou automu00f3vel nu00e3o existir, ou se o automu00f3vel nu00e3o estiver disponu00edvel
+     * @param locacao Dados da locacao
+     * @return Locacao cadastrada
+     * @throws RuntimeException se o cliente ou automovel nao existir, ou se o automovel nao estiver disponivel
      */
     @Transactional
     public Locacao cadastrar(Locacao locacao) {
@@ -48,51 +48,51 @@ public class LocacaoService {
         Cliente cliente = clienteService.buscarPorCodigo(locacao.getCliente().getCodigo());
         locacao.setCliente(cliente);
         
-        // Verifica se o automu00f3vel existe e estu00e1 disponu00edvel
+        // Verifica se o automovel existe e esta disponivel
         Automovel automovel = automovelService.buscarPorId(locacao.getAutomovel().getId());
         if (automovel.getStatus() != StatusAutomovel.DISPONIVEL) {
-            throw new RuntimeException("Automu00f3vel nu00e3o estu00e1 disponu00edvel para locau00e7u00e3o");
+            throw new RuntimeException("Automóvel não esta disponível para locação");
         }
         locacao.setAutomovel(automovel);
         
-        // Define o status da locau00e7u00e3o como ATIVA
+        // Define o status da locacao como ATIVA
         locacao.setStatus(StatusLocacao.ATIVA);
         
-        // Calcula o valor da locau00e7u00e3o
+        // Calcula o valor da locacao
         locacao.calcularValorLocacao();
         
-        // Atualiza o status do automu00f3vel para INDISPONIVEL
+        // Atualiza o status do automovel para INDISPONIVEL
         automovelService.atualizarStatus(automovel.getId(), StatusAutomovel.INDISPONIVEL);
         
-        // Salva a locau00e7u00e3o
+        // Salva a locacao
         return locacaoRepository.save(locacao);
     }
 
     /**
-     * Finaliza uma locau00e7u00e3o
+     * Finaliza uma locacao
      * 
-     * @param numero Nu00famero da locau00e7u00e3o
-     * @return Locau00e7u00e3o finalizada
-     * @throws RuntimeException se a locau00e7u00e3o nu00e3o for encontrada ou ju00e1 estiver finalizada
+     * @param numero Numero da locacao
+     * @return Locacao finalizada
+     * @throws RuntimeException se a locacao nao for encontrada ou ja estiver finalizada
      */
     @Transactional
     public Locacao finalizar(Long numero) {
         Locacao locacao = locacaoRepository.findByNumero(numero);
         if (locacao == null) {
-            throw new RuntimeException("Locau00e7u00e3o nu00e3o encontrada com o nu00famero: " + numero);
+            throw new RuntimeException("Locação não encontrada com o número: " + numero);
         }
         
         if (locacao.getStatus() == StatusLocacao.FINALIZADA) {
-            throw new RuntimeException("Locau00e7u00e3o ju00e1 estu00e1 finalizada");
+            throw new RuntimeException("Locação ja esta finalizada");
         }
         
-        // Atualiza o status da locau00e7u00e3o para FINALIZADA
+        // Atualiza o status da locacao para FINALIZADA
         locacao.setStatus(StatusLocacao.FINALIZADA);
         
-        // Atualiza o status do automu00f3vel para DISPONIVEL
+        // Atualiza o status do automovel para DISPONIVEL
         automovelService.atualizarStatus(locacao.getAutomovel().getId(), StatusAutomovel.DISPONIVEL);
         
-        // Salva a locau00e7u00e3o
+        // Salva a locacao
         return locacaoRepository.save(locacao);
     }
 }

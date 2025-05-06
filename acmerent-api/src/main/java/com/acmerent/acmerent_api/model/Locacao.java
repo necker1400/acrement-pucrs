@@ -45,7 +45,7 @@ public class Locacao {
         if (automovel != null && quantidadeDias != null) {
             double valorBase = automovel.getValorDiaria() * quantidadeDias;
             
-            // Aplica desconto de 5% para locau00e7u00f5es com mais de 7 dias
+            // Aplica desconto de 5% para locacoes com mais de 7 dias
             if (quantidadeDias > 7) {
                 valorLocacao = valorBase * 0.95;
             } else {

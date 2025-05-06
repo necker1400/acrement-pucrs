@@ -27,9 +27,9 @@ public class AutomovelController {
     }
 
     /**
-     * Lista todos os automu00f3veis cadastrados
+     * Lista todos os automoveis cadastrados
      * 
-     * @return Lista de automu00f3veis
+     * @return Lista de automoveis
      */
     @GetMapping("/listaautomoveis")
     public ResponseEntity<List<Automovel>> listarAutomoveis() {
@@ -38,10 +38,10 @@ public class AutomovelController {
     }
 
     /**
-     * Verifica se um automu00f3vel estu00e1 disponu00edvel para locau00e7u00e3o
+     * Verifica se um automovel esta disponivel para locacao
      * 
-     * @param requestBody Corpo da requisiu00e7u00e3o contendo o ID do automu00f3vel
-     * @return true se o automu00f3vel estu00e1 disponu00edvel, false caso contru00e1rio
+     * @param requestBody Corpo da requisicao contendo o ID do automovel
+     * @return true se o automovel esta disponivel, false caso contrario
      */
     @PostMapping("/validaautomovel")
     public ResponseEntity<?> validarAutomovel(@RequestBody Map<String, Long> requestBody) {
@@ -55,11 +55,11 @@ public class AutomovelController {
     }
 
     /**
-     * Atualiza o status de um automu00f3vel
+     * Atualiza o status de um automovel
      * 
-     * @param id ID do automu00f3vel
-     * @param status Novo status do automu00f3vel
-     * @return Automu00f3vel atualizado
+     * @param id ID do automovel
+     * @param status Novo status do automovel
+     * @return Automovel atualizado
      */
     @PostMapping("/atendimento/atualizaautomovel/{id}/estado/{status}")
     public ResponseEntity<?> atualizarAutomovel(@PathVariable Long id, @PathVariable String status) {
@@ -68,7 +68,7 @@ public class AutomovelController {
             Automovel automovel = automovelService.atualizarStatus(id, statusAutomovel);
             return ResponseEntity.ok(automovel);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(Map.of("erro", "Status invu00e1lido: " + status));
+            return ResponseEntity.badRequest().body(Map.of("erro", "Status inválido: " + status));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(Map.of("erro", e.getMessage()));
         }

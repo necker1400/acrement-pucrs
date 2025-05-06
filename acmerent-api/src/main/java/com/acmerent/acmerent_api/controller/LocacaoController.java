@@ -25,9 +25,9 @@ public class LocacaoController {
     }
 
     /**
-     * Lista todas as locau00e7u00f5es cadastradas
+     * Lista todas as locacoes cadastradas
      * 
-     * @return Lista de locau00e7u00f5es
+     * @return Lista de locacoes
      */
     @GetMapping("/listalocacoes")
     public ResponseEntity<List<Locacao>> listarLocacoes() {
@@ -36,10 +36,10 @@ public class LocacaoController {
     }
 
     /**
-     * Cadastra uma nova locau00e7u00e3o
+     * Cadastra uma nova locacao
      * 
-     * @param locacao Dados da locau00e7u00e3o
-     * @return Locau00e7u00e3o cadastrada
+     * @param locacao Dados da locacao
+     * @return Locacao cadastrada
      */
     @PostMapping("/atendimento/cadlocacao")
     public ResponseEntity<?> cadastrarLocacao(@RequestBody Locacao locacao) {
@@ -52,10 +52,10 @@ public class LocacaoController {
     }
 
     /**
-     * Finaliza uma locau00e7u00e3o
+     * Finaliza uma locacao
      * 
-     * @param requestBody Corpo da requisiu00e7u00e3o contendo o nu00famero da locau00e7u00e3o
-     * @return Locau00e7u00e3o finalizada
+     * @param requestBody Corpo da requisicao contendo o numero da locacao
+     * @return Locacao finalizada
      */
     @PostMapping("/atendimento/finalizalocacao")
     public ResponseEntity<?> finalizarLocacao(@RequestBody Map<String, Long> requestBody) {

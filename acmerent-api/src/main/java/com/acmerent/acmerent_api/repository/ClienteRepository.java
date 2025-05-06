@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
     
     /**
-     * Encontra um cliente pelo cu00f3digo
+     * Encontra um cliente pelo codigo
      * 
-     * @param codigo Cu00f3digo do cliente
-     * @return Cliente encontrado ou null se nu00e3o encontrado
+     * @param codigo Codigo do cliente
+     * @return Cliente encontrado ou null se nao encontrado
      */
     Cliente findByCodigo(Long codigo);
 }

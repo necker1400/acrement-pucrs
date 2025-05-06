@@ -31,23 +31,23 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Verifica se ju00e1 existem dados no banco
+        // Verifica se ja existem dados no banco
         if (clienteRepository.count() > 0 || automovelRepository.count() > 0 || locacaoRepository.count() > 0) {
-            System.out.println("Banco de dados ju00e1 possui dados. Pulando inicializau00e7u00e3o.");
+            System.out.println("Banco de dados já possui dados. Pulando inicialização.");
             return;
         }
 
         System.out.println("Inicializando dados de teste...");
 
         // Cria clientes
-        Cliente cliente1 = new Cliente(null, "123.456.789-00", "Jou00e3o Silva", "(51) 98765-4321");
+        Cliente cliente1 = new Cliente(null, "123.456.789-00", "João Silva", "(51) 98765-4321");
         Cliente cliente2 = new Cliente(null, "987.654.321-00", "Maria Oliveira", "(51) 91234-5678");
         Cliente cliente3 = new Cliente(null, "456.789.123-00", "Pedro Santos", "(51) 95555-9999");
 
         List<Cliente> clientes = clienteRepository.saveAll(List.of(cliente1, cliente2, cliente3));
         System.out.println("Clientes criados: " + clientes.size());
 
-        // Cria automu00f3veis
+        // Cria automoveis
         Automovel auto1 = new Automovel(null, "ABC1234", "Fiat Uno", 2021, 100.0, StatusAutomovel.DISPONIVEL);
         Automovel auto2 = new Automovel(null, "DEF5678", "Volkswagen Gol", 2022, 120.0, StatusAutomovel.DISPONIVEL);
         Automovel auto3 = new Automovel(null, "GHI9012", "Chevrolet Onix", 2023, 150.0, StatusAutomovel.DISPONIVEL);
@@ -64,7 +64,7 @@ public class DataInitializer implements CommandLineRunner {
         ));
         System.out.println("Automu00f3veis criados: " + automoveis.size());
 
-        // Cria locau00e7u00f5es
+        // Cria locacoes
         Locacao locacao1 = new Locacao();
         locacao1.setDataInicial(LocalDate.now());
         locacao1.setQuantidadeDias(5);
@@ -82,18 +82,18 @@ public class DataInitializer implements CommandLineRunner {
         locacao2.calcularValorLocacao();
 
         List<Locacao> locacoes = locacaoRepository.saveAll(List.of(locacao1, locacao2));
-        System.out.println("Locau00e7u00f5es criadas: " + locacoes.size());
+        System.out.println("Locações criadas: " + locacoes.size());
 
-        // Atualiza o status dos automu00f3veis em locau00e7u00e3o ativa
+        // Atualiza o status dos automoveis em locacao ativa
         for (Locacao locacao : locacoes) {
             if (locacao.getStatus() == StatusLocacao.ATIVA) {
                 Automovel automovel = locacao.getAutomovel();
                 automovel.setStatus(StatusAutomovel.INDISPONIVEL);
                 automovelRepository.save(automovel);
-                System.out.println("Automu00f3vel " + automovel.getPlaca() + " marcado como INDISPONIVEL");
+                System.out.println("Automóvel " + automovel.getPlaca() + " marcado como INDISPONIVEL");
             }
         }
 
-        System.out.println("Inicializau00e7u00e3o de dados concluu00edda com sucesso!");
+        System.out.println("Inicialização de dados concluída com sucesso!");
     }
 }

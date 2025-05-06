@@ -27,16 +27,16 @@ public class ClienteService {
     }
 
     /**
-     * Busca um cliente pelo cu00f3digo
+     * Busca um cliente pelo codigo
      * 
-     * @param codigo Cu00f3digo do cliente
+     * @param codigo Codigo do cliente
      * @return Cliente encontrado
-     * @throws RuntimeException se o cliente nu00e3o for encontrado
+     * @throws RuntimeException se o cliente nao for encontrado
      */
     public Cliente buscarPorCodigo(Long codigo) {
         Cliente cliente = clienteRepository.findByCodigo(codigo);
         if (cliente == null) {
-            throw new RuntimeException("Cliente nu00e3o encontrado com o cu00f3digo: " + codigo);
+            throw new RuntimeException("Cliente não encontrado com o código: " + codigo);
         }
         return cliente;
     }
