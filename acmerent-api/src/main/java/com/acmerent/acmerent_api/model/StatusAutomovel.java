@@ -1,5 +1,7 @@
 package com.acmerent.acmerent_api.model;
 
-public class StatusAutomovel {
-
+public enum StatusAutomovel {
+    DISPONIVEL,
+    INDISPONIVEL,
+    RETIRADO
 }

@@ -1,5 +1,6 @@
 package com.acmerent.acmerent_api.model;
 
-public class StatusLocacao {
-
+public enum StatusLocacao {
+    ATIVA,
+    FINALIZADA
 }
